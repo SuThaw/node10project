@@ -67,9 +67,15 @@ app.use(expressValidator({
 app.use(flash());
 app.use(function  (req,res,next) {
 	// body...
-	res.locals.message = require('express-messages')(req,res);
+	res.locals.messages = require('express-messages')(req,res);
 	next();
 });
+
+app.use('*',function(req,res,next){
+	res.locals.user = req.user || null;
+	next();
+});
+
 
 app.use(express.static(path.join(__dirname, 'public')));
 
