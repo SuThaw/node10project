@@ -40,11 +40,15 @@ router.post('/add',function(req,res,next){
 	req.checkBody('body','Body Field is required').notEmpty();
 	var errors = req.validationErrors();
 	if(errors){
-		res.renders('addpost',{
+		var categories = db.get('categories');
+		categories.find({},{},function(err,categories){
+			res.render('addpost',{
 			"errors":errors,
 			"title":title,
 			"body":body,
-
+			"categories":categories
+		});
+	
 		});
 	}else{
 		var posts = db.get('posts');
