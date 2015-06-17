@@ -32,7 +32,7 @@ router.post('/add',function(req,res,next){
 		var mainImageSize = req.files.mainimage.size;
 
 	}else{
-		var mainImageName = 'noimage.jpg';
+		var mainImageName = 'noimage.png';
 	}
 
 	//validation
